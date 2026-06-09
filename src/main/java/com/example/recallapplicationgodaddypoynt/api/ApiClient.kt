@@ -10,7 +10,7 @@ object ApiClient {
 
     // Android emulator: 10.0.2.2 maps to host machine's localhost.
     // Real device on same WiFi: change to your machine's LAN IP (e.g. 192.168.1.x).
-    const val BASE_URL = "http://10.0.2.2:8080/"
+    const val BASE_URL = "https://core.autopulse.tech/"
 
     private val okHttpClient = OkHttpClient.Builder()
         .addInterceptor(
