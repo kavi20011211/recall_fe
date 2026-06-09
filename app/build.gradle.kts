@@ -12,7 +12,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "xyz.torchlabs.recall.poynt"
+        applicationId = "com.example.recallapplicationgodaddypoynt"
         minSdk = 24
         targetSdk = 36
         versionCode = 1
@@ -52,6 +52,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.retrofit)
     implementation(libs.retrofit.gson)
+    implementation(libs.okhttp.logging)
     implementation(libs.poynt.api.model)
     implementation(libs.poynt.sdk)
     testImplementation(libs.junit)

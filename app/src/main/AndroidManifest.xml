@@ -23,6 +23,7 @@
             android:exported="false"
             android:theme="@style/Theme.RecallApplicationGodaddyPoynt" />
 
+        <!-- Main home screen (DEV mode simulate button) -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -57,11 +58,13 @@
             android:exported="false"
             android:theme="@style/Theme.RecallApplicationGodaddyPoynt" />
 
+        <!-- Listens for real Poynt payment broadcasts and dev simulation broadcasts -->
         <receiver
             android:name=".receiver.PaymentBroadcastReceiver"
             android:exported="true">
             <intent-filter>
-                <action android:name="poynt.intent.action.TRANSACTION_SUCCESS" />
+                <action android:name="com.recall.poynt.SIMULATE_PAYMENT" />
+                <action android:name="com.poynt.terminal.action.TRANSACTION_COMPLETED" />
             </intent-filter>
         </receiver>
 

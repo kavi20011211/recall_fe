@@ -90,7 +90,7 @@ class OnboardingActivity : ComponentActivity() {
             Result.failure(Exception(msg))
         }
     } catch (e: Exception) {
-        Result.failure(Exception("Cannot reach server. Check your connection and try again."))
+        Result.failure(Exception("Cannot reach server. Is it running on port 5000?"))
     }
 
     private fun goToMain() {

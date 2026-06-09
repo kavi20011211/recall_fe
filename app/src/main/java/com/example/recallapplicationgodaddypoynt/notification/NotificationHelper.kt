@@ -33,6 +33,7 @@ object NotificationHelper {
             putExtra(EXTRA_TRANSACTION_ID, transaction.transactionId)
             putExtra(EXTRA_AMOUNT, transaction.amount)
             putExtra(EXTRA_CARD_TOKEN, transaction.cardToken)
+            putExtra(EXTRA_IS_SIMULATED, transaction.isSimulated)
         }
 
         val pendingIntent = PendingIntent.getActivity(
@@ -42,9 +43,10 @@ object NotificationHelper {
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
 
+        val label = if (transaction.isSimulated) "[SIM] " else ""
         val notification = NotificationCompat.Builder(context, CHANNEL_ID)
             .setSmallIcon(android.R.drawable.ic_dialog_info)
-            .setContentTitle("Payment Approved — \$${transaction.amount}")
+            .setContentTitle("${label}Payment Approved — \$${transaction.amount}")
             .setContentText("Tap to save customer info")
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setAutoCancel(true)
@@ -58,4 +60,5 @@ object NotificationHelper {
     const val EXTRA_TRANSACTION_ID = "transaction_id"
     const val EXTRA_AMOUNT = "amount"
     const val EXTRA_CARD_TOKEN = "card_token"
+    const val EXTRA_IS_SIMULATED = "is_simulated"
 }

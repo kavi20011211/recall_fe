@@ -3,42 +3,46 @@ package com.example.recallapplicationgodaddypoynt.receiver
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.os.Build
-import co.poynt.os.model.Intents
-import co.poynt.os.model.Payment
 import com.example.recallapplicationgodaddypoynt.model.TransactionData
 import com.example.recallapplicationgodaddypoynt.notification.NotificationHelper
 
 class PaymentBroadcastReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
-        if (intent.action == Intents.ACTION_TRANSACTION_SUCCESS) {
-            handlePoyntPayment(context, intent)
+        when (intent.action) {
+            ACTION_SIMULATE_PAYMENT -> handleSimulatedPayment(context, intent)
+            ACTION_POYNT_TRANSACTION_COMPLETED -> handlePoyntPayment(context, intent)
         }
     }
 
-    private fun handlePoyntPayment(context: Context, intent: Intent) {
-        val payment: Payment? = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            intent.getParcelableExtra(Intents.INTENT_EXTRAS_PAYMENT, Payment::class.java)
-        } else {
-            @Suppress("DEPRECATION")
-            intent.getParcelableExtra(Intents.INTENT_EXTRAS_PAYMENT)
-        }
-
-        val txn = payment?.transactions?.firstOrNull() ?: return
-        val transactionId = txn.id?.toString()?.takeIf { it.isNotEmpty() } ?: return
-        val amountCents = txn.amounts?.transactionAmount ?: return
-        val card = txn.fundingSource?.card
-        // Use card ID as the customer card identifier (Poynt's internal unique card reference)
-        val cardToken = card?.id?.toString() ?: ""
-
-        NotificationHelper.showPaymentNotification(
-            context,
-            TransactionData(
-                transactionId = transactionId,
-                amount = "%.2f".format(amountCents / 100.0),
-                cardToken = cardToken
-            )
+    private fun handleSimulatedPayment(context: Context, intent: Intent) {
+        val transaction = TransactionData(
+            transactionId = intent.getStringExtra("transaction_id") ?: "SIM-${System.currentTimeMillis()}",
+            amount = intent.getStringExtra("amount") ?: "0.00",
+            cardToken = intent.getStringExtra("card_token") ?: "TOKEN-SIM",
+            isSimulated = true
         )
+        NotificationHelper.showPaymentNotification(context, transaction)
+    }
+
+    private fun handlePoyntPayment(context: Context, intent: Intent) {
+        // Real Poynt SDK: extract transaction from the Poynt intent bundle.
+        // The Poynt SDK broadcasts TRANSACTION_COMPLETED with a Transaction parcelable.
+        // TODO: replace with real Poynt Transaction parcelable extraction when running on device
+        val transaction = TransactionData(
+            transactionId = intent.getStringExtra("transactionId") ?: "",
+            amount = intent.getStringExtra("amount") ?: "0.00",
+            cardToken = intent.getStringExtra("cardToken") ?: "",
+            isSimulated = false
+        )
+        if (transaction.transactionId.isNotEmpty()) {
+            NotificationHelper.showPaymentNotification(context, transaction)
+        }
+    }
+
+    companion object {
+        const val ACTION_SIMULATE_PAYMENT = "com.recall.poynt.SIMULATE_PAYMENT"
+        // Real GoDaddy Poynt broadcast for completed transactions
+        const val ACTION_POYNT_TRANSACTION_COMPLETED = "com.poynt.terminal.action.TRANSACTION_COMPLETED"
     }
 }

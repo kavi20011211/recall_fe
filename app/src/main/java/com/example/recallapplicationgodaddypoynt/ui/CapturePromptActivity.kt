@@ -25,11 +25,13 @@ class CapturePromptActivity : ComponentActivity() {
         val transactionId = intent.getStringExtra(NotificationHelper.EXTRA_TRANSACTION_ID) ?: ""
         val amount = intent.getStringExtra(NotificationHelper.EXTRA_AMOUNT) ?: "0.00"
         val cardToken = intent.getStringExtra(NotificationHelper.EXTRA_CARD_TOKEN) ?: ""
+        val isSimulated = intent.getBooleanExtra(NotificationHelper.EXTRA_IS_SIMULATED, false)
 
         setContent {
             RecallApplicationGodaddyPoyntTheme {
                 CapturePromptScreen(
                     amount = amount,
+                    isSimulated = isSimulated,
                     onYes = {
                         startActivity(Intent(this, PhoneEntryActivity::class.java).apply {
                             putExtra(NotificationHelper.EXTRA_TRANSACTION_ID, transactionId)
@@ -48,6 +50,7 @@ class CapturePromptActivity : ComponentActivity() {
 @Composable
 fun CapturePromptScreen(
     amount: String,
+    isSimulated: Boolean,
     onYes: () -> Unit,
     onSkip: () -> Unit
 ) {
@@ -81,6 +84,16 @@ fun CapturePromptScreen(
                     modifier = Modifier.padding(24.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
+                    if (isSimulated) {
+                        Text(
+                            text = "SIMULATED PAYMENT",
+                            fontSize = 11.sp,
+                            color = Color(0xFFA5D6A7),
+                            fontWeight = FontWeight.Bold,
+                            letterSpacing = 1.sp
+                        )
+                        Spacer(modifier = Modifier.height(4.dp))
+                    }
                     Text(
                         text = "Payment Approved",
                         fontSize = 20.sp,
