@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.sp
 import com.autopulse.dev.notification.NotificationHelper
 import com.autopulse.dev.storage.AppPreferences
 import com.autopulse.dev.ui.OnboardingActivity
-import com.autopulse.dev.ui.theme.RecallApplicationGodaddyPoyntTheme
+import com.autopulse.dev.ui.theme.AutoPulseTheme
 
 class MainActivity : ComponentActivity() {
 
@@ -43,7 +43,7 @@ class MainActivity : ComponentActivity() {
         requestNotificationPermissionIfNeeded()
 
         setContent {
-            RecallApplicationGodaddyPoyntTheme {
+            AutoPulseTheme {
                 MainScreen(businessName = prefs.businessName ?: "Your Business")
             }
         }

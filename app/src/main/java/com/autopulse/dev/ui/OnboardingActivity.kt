@@ -22,7 +22,7 @@ import com.autopulse.dev.MainActivity
 import com.autopulse.dev.api.ApiClient
 import com.autopulse.dev.api.CreateMerchantRequest
 import com.autopulse.dev.storage.AppPreferences
-import com.autopulse.dev.ui.theme.RecallApplicationGodaddyPoyntTheme
+import com.autopulse.dev.ui.theme.AutoPulseTheme
 import kotlinx.coroutines.launch
 
 class OnboardingActivity : ComponentActivity() {
@@ -41,7 +41,7 @@ class OnboardingActivity : ComponentActivity() {
         }
 
         setContent {
-            RecallApplicationGodaddyPoyntTheme {
+            AutoPulseTheme {
                 OnboardingScreen(
                     isLoading = isLoading,
                     errorMessage = errorMessage,

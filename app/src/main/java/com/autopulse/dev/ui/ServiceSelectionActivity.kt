@@ -15,7 +15,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.autopulse.dev.notification.NotificationHelper
-import com.autopulse.dev.ui.theme.RecallApplicationGodaddyPoyntTheme
+import com.autopulse.dev.ui.theme.AutoPulseTheme
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -29,7 +29,7 @@ class ServiceSelectionActivity : ComponentActivity() {
         val consentTimestamp = intent.getStringExtra(PhoneEntryActivity.EXTRA_CONSENT_TIMESTAMP) ?: ""
 
         setContent {
-            RecallApplicationGodaddyPoyntTheme {
+            AutoPulseTheme {
                 ServiceSelectionScreen(
                     onConfirm = { serviceDisplayName, reminderDays ->
                         val reminderDate = LocalDate.now().plusDays(reminderDays.toLong())

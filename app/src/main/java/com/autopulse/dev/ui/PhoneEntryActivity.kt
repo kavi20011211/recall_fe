@@ -15,7 +15,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.autopulse.dev.notification.NotificationHelper
-import com.autopulse.dev.ui.theme.RecallApplicationGodaddyPoyntTheme
+import com.autopulse.dev.ui.theme.AutoPulseTheme
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -30,7 +30,7 @@ class PhoneEntryActivity : ComponentActivity() {
         val cardToken = intent.getStringExtra(NotificationHelper.EXTRA_CARD_TOKEN) ?: ""
 
         setContent {
-            RecallApplicationGodaddyPoyntTheme {
+            AutoPulseTheme {
                 PhoneEntryScreen(
                     onConfirm = { phoneNumber ->
                         val consentTimestamp = currentIsoTimestamp()

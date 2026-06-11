@@ -20,7 +20,7 @@ import com.autopulse.dev.api.ApiClient
 import com.autopulse.dev.api.CreateCustomerRequest
 import com.autopulse.dev.api.CreateVisitRequest
 import com.autopulse.dev.storage.AppPreferences
-import com.autopulse.dev.ui.theme.RecallApplicationGodaddyPoyntTheme
+import com.autopulse.dev.ui.theme.AutoPulseTheme
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.time.LocalDate
@@ -47,7 +47,7 @@ class SuccessActivity : ComponentActivity() {
         val reminderDateIso = intent.getStringExtra(EXTRA_REMINDER_DATE_ISO) ?: ""
 
         setContent {
-            RecallApplicationGodaddyPoyntTheme {
+            AutoPulseTheme {
                 SuccessScreen(
                     saveState = saveState,
                     serviceType = serviceType,
