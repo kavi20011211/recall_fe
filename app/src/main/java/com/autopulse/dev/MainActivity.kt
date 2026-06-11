@@ -72,7 +72,7 @@ fun MainScreen(businessName: String) {
             verticalArrangement = Arrangement.Center
         ) {
             Text(
-                text = "Recall",
+                text = "Auto Pulse",
                 fontSize = 42.sp,
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.primary
@@ -112,7 +112,7 @@ fun MainScreen(businessName: String) {
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
-                        text = "Recall is running. It will automatically prompt you to save a customer after every completed payment.",
+                        text = "Auto Pulse is running. It will automatically prompt you to save a customer after every completed payment.",
                         fontSize = 14.sp,
                         color = MaterialTheme.colorScheme.onSecondaryContainer,
                         textAlign = TextAlign.Center,

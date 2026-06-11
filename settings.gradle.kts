@@ -23,5 +23,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Recall Application(Godaddy Poynt)"
+rootProject.name = "Auto Pulse"
 include(":app")
