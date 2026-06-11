@@ -10,7 +10,7 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_launcher_background"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -19,12 +19,12 @@
 
         <!-- First launch: merchant registration -->
         <activity
-            android:name=".ui.OnboardingActivity"
+            android:name="com.autopulse.dev.ui.OnboardingActivity"
             android:exported="false"
             android:theme="@style/Theme.RecallApplicationGodaddyPoynt" />
 
         <activity
-            android:name=".MainActivity"
+            android:name="com.autopulse.dev.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.RecallApplicationGodaddyPoynt">
@@ -36,29 +36,29 @@
 
         <!-- Post-payment capture prompt — shown over lock screen on Poynt device -->
         <activity
-            android:name=".ui.CapturePromptActivity"
+            android:name="com.autopulse.dev.ui.CapturePromptActivity"
             android:exported="false"
             android:showWhenLocked="true"
             android:turnScreenOn="true"
             android:theme="@style/Theme.RecallApplicationGodaddyPoynt" />
 
         <activity
-            android:name=".ui.PhoneEntryActivity"
+            android:name="com.autopulse.dev.ui.PhoneEntryActivity"
             android:exported="false"
             android:theme="@style/Theme.RecallApplicationGodaddyPoynt" />
 
         <activity
-            android:name=".ui.ServiceSelectionActivity"
+            android:name="com.autopulse.dev.ui.ServiceSelectionActivity"
             android:exported="false"
             android:theme="@style/Theme.RecallApplicationGodaddyPoynt" />
 
         <activity
-            android:name=".ui.SuccessActivity"
+            android:name="com.autopulse.dev.ui.SuccessActivity"
             android:exported="false"
             android:theme="@style/Theme.RecallApplicationGodaddyPoynt" />
 
         <receiver
-            android:name=".receiver.PaymentBroadcastReceiver"
+            android:name="com.autopulse.dev.receiver.PaymentBroadcastReceiver"
             android:exported="true">
             <intent-filter>
                 <action android:name="poynt.intent.action.TRANSACTION_SUCCESS" />

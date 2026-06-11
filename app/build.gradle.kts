@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.recallapplicationgodaddypoynt"
+    namespace = "com.autopulse.dev"
     compileSdk {
         version = release(36) {
             minorApiLevel = 1
@@ -12,17 +12,29 @@ android {
     }
 
     defaultConfig {
-        applicationId = "xyz.torchlabs.recall.poynt"
+        applicationId = "com.autopulse.dev"
         minSdk = 24
         targetSdk = 36
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 5
+        versionName = "1.4"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        create("release") {
+            storeFile = file("C:/Users/BRIGHTSEID/keystore/autopulse.jks")
+            storePassword = "XynBslow!129761@-iou"
+            keyAlias = "autopulse"
+            keyPassword = "XynBslow!129761@-iou"
+            enableV1Signing = true
+            enableV2Signing = true   // ← enable V2 for modern devices
+        }
+    }
+
     buildTypes {
         release {
+            signingConfig = signingConfigs.getByName("release")
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
