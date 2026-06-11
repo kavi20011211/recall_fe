@@ -27,6 +27,7 @@
             android:name="com.autopulse.dev.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
+            android:icon="@mipmap/ic_launcher"
             android:theme="@style/Theme.AutoPulse">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
