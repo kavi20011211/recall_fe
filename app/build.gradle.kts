@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.recallapplicationgodaddypoynt"
+    namespace = "com.autopulse.dev"
     compileSdk {
         version = release(36) {
             minorApiLevel = 1
